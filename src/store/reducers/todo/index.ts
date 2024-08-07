@@ -4,11 +4,7 @@ import { TodoAppStateData } from "./action-types";
 import { STATUS } from "@/utils/helpers/enums/status";
 
 const initialState: TodoAppStateData = {
-  data: [
-    { id: 0, text: "Learn React", completed: true, color: null },
-    { id: 1, text: "Learn Redux", completed: false, color: "purple" },
-    { id: 2, text: "Build something fun!", completed: false, color: "blue" },
-  ],
+  data: [],
   filters: {
     status: STATUS.ALL,
     colors: [],

@@ -68,6 +68,9 @@ export function Todos() {
             ref={inputRef}
             type="text"
             placeholder="What's need to be done?"
+            onKeyDown={(event) => {
+              event.key === "Enter" && handleAddTodo();
+            }}
           />
         </div>
         <Button onClick={handleAddTodo}>Add</Button>
@@ -138,6 +141,7 @@ export function Todos() {
                 id={color}
                 key={color}
                 value={color}
+                checked={filters?.colors?.includes(color.toLocaleLowerCase())}
                 onClick={() => dispatch(selectColorsToFilter(color))}
               />
             ))}

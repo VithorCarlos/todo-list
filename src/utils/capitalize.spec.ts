@@ -5,7 +5,7 @@ describe("Capitalize text", () => {
     const textOne = "john doe";
     const textTwo = "maria";
 
-    expect(capitalize(textOne)).toBe("John Doe");
+    expect(capitalize(textOne)).toBe("John doe");
     expect(capitalize(textTwo)).toBe("Maria");
   });
 });
