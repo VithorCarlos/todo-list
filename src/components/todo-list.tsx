@@ -36,7 +36,7 @@ function TodoListComponent({
   };
 
   return (
-    <div className="flex items-center justify-between my-2">
+    <div className="flex items-center justify-between my-2 gap-2">
       <div className="flex items-center gap-2">
         <Checkbox
           id={id?.toString()}

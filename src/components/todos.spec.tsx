@@ -11,7 +11,7 @@ describe("Todos test", () => {
   beforeEach(() => {
     customRender(<Todos />);
     inputElement = screen.getByPlaceholderText("What's need to be done?");
-    buttonAddTodoElement = screen.getByText("Create todo");
+    buttonAddTodoElement = screen.getByText("Add");
   });
 
   afterEach(() => {

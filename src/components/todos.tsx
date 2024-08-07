@@ -61,7 +61,7 @@ export function Todos() {
   }, [todos, filters]);
 
   return (
-    <div className="flex flex-col bg-slate-100 max-w-3xl w-full min-h-96 h-[500px] rounded-lg p-4">
+    <div className="flex flex-col bg-slate-100 max-w-3xl w-full min-h-96  rounded-lg p-4">
       <div className="flex items-center justify-between gap-3 border-b pb-2">
         <div className="flex-grow bg-slate-200  rounded-lg">
           <Input
@@ -70,10 +70,15 @@ export function Todos() {
             placeholder="What's need to be done?"
           />
         </div>
-        <Button onClick={handleAddTodo}>Create todo</Button>
+        <Button onClick={handleAddTodo}>Add</Button>
       </div>
 
-      <div className="overflow-y-auto ">
+      <div className="overflow-y-auto max-h-[400px] lg:max-h-[500px]">
+        {todoList.length === 0 && (
+          <p className="my-2 text-gray-600 text-center">
+            Add new todos to get started!
+          </p>
+        )}
         {todoList.map((todo) => (
           <TodoList
             key={todo.id}
@@ -85,7 +90,7 @@ export function Todos() {
         ))}
       </div>
 
-      <div className="self-start mt-auto border-t py-2 flex w-full  gap-3 justify-between">
+      <div className="self-start mt-auto border-t py-2 flex  flex-wrap lg:flex-row w-full  justify-between gap-3 ">
         <div>
           <strong className="block mb-2">Actions</strong>
 
@@ -94,20 +99,20 @@ export function Todos() {
               variant="secondary"
               onClick={() => dispatch(markAllCompleted())}
             >
-              Mark all completed
+              Check all
             </Button>
 
             <Button
               variant="secondary"
               onClick={() => dispatch(removeAllCompleted())}
             >
-              Clear completed
+              Uncheck all
             </Button>
           </div>
         </div>
         <div>
           <strong className="block mb-2">Remaing todos</strong>
-          <p className="text-center">{todos.length} item left</p>
+          <p>{todos.length} item left</p>
         </div>
         <div className="flex items-start flex-col">
           <strong className="block mb-2">Filter by status</strong>
@@ -125,7 +130,7 @@ export function Todos() {
             </Button>
           ))}
         </div>
-        <div className="flex items-start flex-col">
+        <div className="flex items-start flex-col ">
           <strong className="block mb-2">Filter by color</strong>
           <div className="flex flex-col gap-2">
             {Object.values(COLORS).map((color) => (
