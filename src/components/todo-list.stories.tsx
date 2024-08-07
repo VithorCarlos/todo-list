@@ -5,6 +5,8 @@ import { TodoList } from "./todo-list";
 import { Provider } from "@/providers";
 import { COLORS } from "@/utils/helpers/enums/colors";
 
+type Story = StoryObj<typeof TodoList>;
+
 const meta: Meta<typeof TodoList> = {
   component: TodoList,
   args: {
@@ -21,9 +23,9 @@ const meta: Meta<typeof TodoList> = {
 
 export default meta;
 
-export const Default: StoryObj = {};
+export const Default = {};
 
-export const Checked: StoryObj<typeof TodoList> = {
+export const Completed: Story = {
   args: {
     isCompleted: true,
     currentColor: COLORS.RED.toLocaleLowerCase(),

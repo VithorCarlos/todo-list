@@ -13,6 +13,9 @@ import {
 import { STATUS } from "@/utils/helpers/enums/status";
 import { twMerge } from "tailwind-merge";
 import { COLORS } from "@/utils/helpers/enums/colors";
+import { Input } from "./input";
+import { Button } from "./button";
+import { Checkbox } from "./checkbox";
 
 export function Todos() {
   const { data: todos, filters } = useSelector(
@@ -61,22 +64,16 @@ export function Todos() {
     <div className="flex flex-col bg-slate-100 max-w-3xl w-full min-h-96 h-[500px] rounded-lg p-4">
       <div className="flex items-center justify-between gap-3 border-b pb-2">
         <div className="flex-grow bg-slate-200  rounded-lg">
-          <input
+          <Input
             ref={inputRef}
             type="text"
             placeholder="What's need to be done?"
-            className="text-black w-full bg-slate-200 p-2 px-3 outline-none rounded-lg"
           />
         </div>
-        <button
-          className="bg-green-500 text-white py-2 px-4 rounded-md"
-          onClick={handleAddTodo}
-        >
-          Create todo
-        </button>
+        <Button onClick={handleAddTodo}>Create todo</Button>
       </div>
 
-      <div>
+      <div className="overflow-y-auto ">
         {todoList.map((todo) => (
           <TodoList
             key={todo.id}
@@ -93,19 +90,19 @@ export function Todos() {
           <strong className="block mb-2">Actions</strong>
 
           <div className="flex flex-col items-start gap-2">
-            <button
-              className="bg-blue-500 rounded-md p-2 text-white font-medium"
+            <Button
+              variant="secondary"
               onClick={() => dispatch(markAllCompleted())}
             >
               Mark all completed
-            </button>
+            </Button>
 
-            <button
-              className="bg-blue-500 rounded-md p-2 text-white font-medium"
+            <Button
+              variant="secondary"
               onClick={() => dispatch(removeAllCompleted())}
             >
               Clear completed
-            </button>
+            </Button>
           </div>
         </div>
         <div>
@@ -116,32 +113,26 @@ export function Todos() {
           <strong className="block mb-2">Filter by status</strong>
 
           {Object.values(STATUS).map((status) => (
-            <button
+            <Button
               key={status}
+              variant="outline"
               className={twMerge(
                 filters.status === status && "font-bold text-blue-600"
               )}
               onClick={() => dispatch(changeStatus(status))}
             >
               {capitalize(status)}
-            </button>
+            </Button>
           ))}
         </div>
         <div className="flex items-start flex-col">
           <strong className="block mb-2">Filter by color</strong>
           <div className="flex flex-col gap-2">
             {Object.values(COLORS).map((color) => (
-              <div key={color} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id={color}
-                  value={color}
-                  onClick={() => dispatch(selectColorsToFilter(color))}
-                />
-                <label htmlFor={color} className="text-black">
-                  {capitalize(color)}
-                </label>
-              </div>
+              <Checkbox
+                value={color}
+                onClick={() => dispatch(selectColorsToFilter(color))}
+              />
             ))}
           </div>
         </div>

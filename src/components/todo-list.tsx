@@ -8,7 +8,8 @@ import { capitalize } from "@/utils/capitalize";
 import { COLORS } from "@/utils/helpers/enums/colors";
 import { memo, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { twMerge } from "tailwind-merge";
+import { Checkbox } from "./checkbox";
+import { X } from "lucide-react";
 
 export interface TodoListProps {
   value: string;
@@ -37,19 +38,12 @@ function TodoListComponent({
   return (
     <div className="flex items-center justify-between my-2">
       <div className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          id={value.toLowerCase()}
-          name={value.toLowerCase()}
-          onChange={() => dispatch(toggleCompleted(id))}
+        <Checkbox
+          value={value.toLowerCase()}
           checked={isCompleted}
+          onChange={() => dispatch(toggleCompleted(id))}
+          hasLineThrough={isCompleted}
         />
-        <label
-          htmlFor={value.toLowerCase()}
-          className={twMerge("text-black", isCompleted && "line-through")}
-        >
-          {value}
-        </label>
       </div>
 
       <div className="flex items-center gap-2">
@@ -68,11 +62,8 @@ function TodoListComponent({
           ))}
         </select>
 
-        <button
-          className="text-red-500"
-          onClick={() => dispatch(removeTodo(id))}
-        >
-          x
+        <button onClick={() => dispatch(removeTodo(id))}>
+          <X className="text-red-500 w-5 h-5" />
         </button>
       </div>
     </div>
