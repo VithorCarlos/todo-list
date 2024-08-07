@@ -39,7 +39,7 @@ function TodoListComponent({
     <div className="flex items-center justify-between my-2">
       <div className="flex items-center gap-2">
         <Checkbox
-          id={id.toString()}
+          id={id?.toString()}
           value={value.toLowerCase()}
           checked={isCompleted}
           onChange={() => dispatch(toggleCompleted(id))}
