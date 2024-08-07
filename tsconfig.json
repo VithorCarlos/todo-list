@@ -1,11 +1,13 @@
 {
   "files": [],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
         "@/*": ["src/*"],
     },
+    "moduleResolution": "node",
     "esModuleInterop": true
   },
   "references": [

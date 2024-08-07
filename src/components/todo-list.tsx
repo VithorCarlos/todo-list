@@ -39,6 +39,7 @@ function TodoListComponent({
     <div className="flex items-center justify-between my-2">
       <div className="flex items-center gap-2">
         <Checkbox
+          id={id.toString()}
           value={value.toLowerCase()}
           checked={isCompleted}
           onChange={() => dispatch(toggleCompleted(id))}
@@ -62,7 +63,10 @@ function TodoListComponent({
           ))}
         </select>
 
-        <button onClick={() => dispatch(removeTodo(id))}>
+        <button
+          data-testid={`remove-todo-${id}`}
+          onClick={() => dispatch(removeTodo(id))}
+        >
           <X className="text-red-500 w-5 h-5" />
         </button>
       </div>

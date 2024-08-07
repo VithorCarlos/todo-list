@@ -130,6 +130,8 @@ export function Todos() {
           <div className="flex flex-col gap-2">
             {Object.values(COLORS).map((color) => (
               <Checkbox
+                id={color}
+                key={color}
                 value={color}
                 onClick={() => dispatch(selectColorsToFilter(color))}
               />

@@ -1,8 +1,7 @@
+import { customRender } from "@/config/jest/test-utils";
 import { App } from "../App";
 
-import { render } from "@testing-library/react";
-
 test("Renders the main page", () => {
-  render(<App />);
+  customRender(<App />);
   expect(true).toBe(true);
 });

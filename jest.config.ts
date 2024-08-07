@@ -1,16 +1,58 @@
-export default {
+/**
+ * For a detailed explanation regarding each configuration property, visit:
+ * https://jestjs.io/docs/configuration
+ */
+
+import type { Config } from "jest";
+
+const config: Config = {
+  coverageProvider: "v8",
   rootDir: "src",
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  transform: {
-    "^.+\\.tsx?$": "ts-jest",
-  },
   moduleNameMapper: {
-    "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/config/jest/fileMock.ts",
-    "^.+\\.(css|less|scss|sass)$": "<rootDir>/config/jest/styleMock.ts",
     "^@/(.*)$": "<rootDir>/$1",
   },
-  setupFilesAfterEnv: ["./config/jest/setupTests.ts"],
-  moduleFileExtensions: ["tsx", "ts", "js", "json", "jsx", "node"],
-  modulePaths: ["<rootDir>/src"],
+
+  moduleFileExtensions: [
+    "js",
+    "mjs",
+    "cjs",
+    "jsx",
+    "ts",
+    "tsx",
+    "json",
+    "node",
+  ],
+
+  setupFilesAfterEnv: [
+    "<rootDir>/config/jest/setup.ts",
+    "@testing-library/jest-dom",
+  ],
+
+  testEnvironment: "jsdom",
+
+  transform: {
+    "^.+\\.(t|j)sx?$": [
+      "@swc/jest",
+      {
+        jsc: {
+          target: "es2021",
+          parser: {
+            syntax: "typescript",
+            tsx: true,
+            decorators: true,
+          },
+          keepClassNames: true,
+          transform: {
+            legacyDecorator: true,
+            decoratorMetadata: true,
+            react: {
+              runtime: "automatic",
+            },
+          },
+        },
+      },
+    ],
+  },
 };
+
+export default config;
