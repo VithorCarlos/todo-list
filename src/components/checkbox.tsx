@@ -1,31 +1,35 @@
 import { capitalize } from "@/utils/capitalize";
-import { ComponentProps, memo } from "react";
-import { twMerge } from "tailwind-merge";
+import { memo } from "react";
+import { Checkbox as CheckBoxMui, FormControlLabel } from "@mui/material";
 
-export interface CheckboxProps extends ComponentProps<"input"> {
-  value: string;
+export interface CheckboxProps {
   id: string;
+  value: string;
   hasLineThrough?: boolean;
+  checked?: boolean;
+  onChange?: () => void;
 }
 
 const CheckboxComponent: React.FC<CheckboxProps> = ({
+  id,
   value,
   hasLineThrough,
-  id,
-  ...props
+  checked = false,
+  onChange,
 }) => {
   return (
-    <div key={value} className="flex items-center gap-2">
-      <input type="checkbox" id={id} value={value} {...props} />
-      <label
-        htmlFor={id}
-        className={twMerge(
-          "text-black select-none",
-          hasLineThrough && "line-through"
-        )}
-      >
-        {capitalize(value)}
-      </label>
+    <div className="flex items-center gap-2">
+      <FormControlLabel
+        control={<CheckBoxMui id={id} value={value} />}
+        label={capitalize(value)}
+        {...{ id, checked, onChange }}
+        style={{
+          ...(hasLineThrough && {
+            textDecorationLine: "line-through",
+          }),
+          userSelect: "none",
+        }}
+      />
     </div>
   );
 };

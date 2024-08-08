@@ -142,7 +142,7 @@ export function Todos() {
                 key={color}
                 value={color}
                 checked={filters?.colors?.includes(color.toLocaleLowerCase())}
-                onClick={() => dispatch(selectColorsToFilter(color))}
+                onChange={() => dispatch(selectColorsToFilter(color))}
               />
             ))}
           </div>

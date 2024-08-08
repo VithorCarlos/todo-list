@@ -22,7 +22,7 @@ function TodoListComponent({
   id,
   isCompleted,
   currentColor,
-  value = "",
+  value,
 }: TodoListProps) {
   const dispatch = useDispatch<AppDispatch>();
   const selectRef = useRef<HTMLSelectElement>(null);

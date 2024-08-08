@@ -1,3 +1,5 @@
+import { STATUS } from "@/utils/helpers/enums/status";
+
 export interface TodoAppStateData {
   data: {
     id: number;
@@ -7,7 +9,7 @@ export interface TodoAppStateData {
   }[];
 
   filters: {
-    status: string;
+    status: STATUS;
     colors: string[];
   };
 }
