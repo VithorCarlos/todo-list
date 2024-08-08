@@ -20,7 +20,7 @@ describe("Redux todo test", () => {
     initialState = {
       data: [{ id: 0, text: "Learn React", completed: true, color: "blue" }],
       filters: {
-        status: "Active",
+        status: STATUS.ACTIVE,
         colors: [],
       },
     };
