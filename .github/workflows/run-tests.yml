@@ -1,0 +1,26 @@
+name: 🗓️ Run Tests
+run-name: ${{ github.actor }} is running out GitHub Actions 🚀
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Check out code
+        uses: actions/checkout@v4
+
+      - name: 🏗 Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗 Run tests
+        run: pnpm test
