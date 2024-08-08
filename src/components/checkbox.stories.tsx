@@ -6,6 +6,7 @@ type Story = StoryObj<typeof Checkbox>;
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
   args: {
+    checked: false,
     value: "Checkbox Text",
   },
 };
